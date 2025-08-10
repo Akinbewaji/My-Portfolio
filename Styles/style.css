@@ -16,6 +16,11 @@
     --second-bg-color: #3d0649;
     --text-color: #ededed;
     --main-color: #a312c4;
+    --accent-color: #ff6b6b;
+    --success-color: #4cd964;
+    --error-color: #ff3b30;
+    --transition-speed: 0.3s;
+    --border-radius: 0.8rem;
 }
 
 html {
@@ -566,6 +571,234 @@ span {
     width: 90%;
 }
 
+/* Projects Section */
+.projects {
+    min-height: auto;
+    padding-bottom: 7rem;
+}
+
+.projects h2 {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Filter buttons container */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.filter-btn {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    color: var(--text-color);
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--main-color);
+    z-index: -1;
+    transition: width 0.3s ease;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    width: 100%;
+}
+
+.filter-btn:hover, 
+.filter-btn.active {
+    color: var(--bg-color);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.project-box {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: var(--second-bg-color);
+    transition: all 0.4s ease;
+    transform: translateY(0);
+}
+
+.project-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.project-img-container {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+
+.project-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-box:hover img {
+    transform: scale(1.1);
+}
+
+.project-info {
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.project-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-box:hover .project-info::before {
+    opacity: 1;
+}
+
+.project-info h3 {
+    font-size: 2.2rem;
+    color: var(--main-color);
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.project-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: var(--main-color);
+    transition: width 0.3s ease;
+}
+
+.project-box:hover .project-info h3::after {
+    width: 100%;
+}
+
+.project-info p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    color: var(--text-color);
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.project-tech span {
+    font-size: 1.3rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 3rem;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.project-tech span:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.project-links .btn {
+    padding: 1rem 1.8rem;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.project-links .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for Projects */
+@media (max-width: 1200px) {
+    .projects-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filter-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .filter-container {
+        gap: 1rem;
+    }
+    
+    .filter-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 1.4rem;
+    }
+}
+
 .contact {
     min-height: auto;
     padding-bottom: 7rem;
@@ -628,6 +861,78 @@ span {
 .contact form .input-box .input-field input:focus~.focus,
 .contact form .input-box .input-field input:valid~.focus,
 .contact form .textarea-field textarea:focus~.focus{     width: 100%;
+}
+
+.message-status {
+    font-size: 1.6rem;
+    margin: 1.8rem 0;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    display: none;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.message-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.message-status.success {
+    display: block;
+    background-color: rgba(76, 217, 100, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.message-status.success::before {
+    background-color: var(--success-color);
+}
+
+.message-status.error {
+    display: block;
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+.message-status.error::before {
+    background-color: var(--error-color);
+}
+
+.message-status.sending {
+    display: block;
+    background-color: rgba(163, 18, 196, 0.1);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+    position: relative;
+}
+
+.message-status.sending::before {
+    background-color: var(--main-color);
+    animation: pulse 1.5s infinite;
+}
+
+.field-error {
+    color: var(--error-color);
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    text-align: left;
+    display: block;
+    padding-left: 0.5rem;
+    font-weight: 500;
+}
+
+.error-input {
+    border-color: var(--error-color) !important;
 }
 
 .contact form .textarea-field {

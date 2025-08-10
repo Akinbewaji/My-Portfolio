@@ -1,0 +1,111 @@
+/* Dark/Light Mode Styling */
+:root {
+    --bg-color: #1a0a1e;
+    --second-bg-color: #3d0649;
+    --text-color: #ededed;
+    --main-color: #a312c4;
+    --accent-color: #ff6b6b;
+    --success-color: #4cd964;
+    --error-color: #ff3b30;
+    --transition-speed: 0.3s;
+    --border-radius: 0.8rem;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] {
+    --bg-color: #f5f5f7;
+    --second-bg-color: #e0e0e5;
+    --text-color: #333333;
+    --main-color: #8711a8;
+    --accent-color: #ff6b6b;
+    --success-color: #34c759;
+    --error-color: #ff3b30;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    font-size: 2.5rem;
+    color: var(--bg-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle i {
+    transition: all 0.3s ease;
+}
+
+/* Animation for theme transition */
+html {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body, .header, .footer, .about, .skills {
+    transition: background-color 0.5s ease;
+}
+
+/* Light theme specific adjustments */
+[data-theme="light"] .animate {
+    background: var(--bg-color);
+}
+
+[data-theme="light"] section:nth-child(odd) .animate.scroll,
+[data-theme="light"] footer .animate.scroll {
+    background: var(--second-bg-color);
+}
+
+/* Enhanced text contrast in light mode */
+[data-theme="light"] .home-content .text-animate h3 {
+    -webkit-text-stroke: 0.7px var(--main-color);
+    color: transparent;
+}
+
+/* Profile image border adjustment for light mode */
+[data-theme="light"] .about-img .circle-spin {
+    border-top: .2rem solid var(--second-bg-color);
+    border-bottom: .2rem solid var(--second-bg-color);
+    border-left: .2rem solid var(--main-color);
+    border-right: .2rem solid var(--main-color);
+}
+
+/* Navbar adjustments for light mode */
+[data-theme="light"] .navbar.active .active-nav {
+    background: var(--bg-color);
+}
+
+@media (max-width: 768px) {
+    [data-theme="light"] .navbar {
+        background: var(--main-color);
+    }
+    
+    .theme-toggle {
+        bottom: 10rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .theme-toggle {
+        bottom: 2rem;
+        right: 2rem;
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+}
